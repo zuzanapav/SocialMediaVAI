@@ -1,68 +1,64 @@
 import React from 'react';
-import { View, Text, Image, StyleSheet, TouchableOpacity } from 'react-native';
-import style from "./style";
 import PropTypes from 'prop-types';
-import UserStory from '../UserStory/UserStory';
-import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
-import {faEllipsis, faHeart, faComment, faBookmark } from "@fortawesome/free-solid-svg-icons";
-
+import { View, Text, Image } from 'react-native';
+import UserProfileImage from '../UserProfileImage/UserProfileImage';
+import { FontAwesomeIcon } from '@fortawesome/react-native-fontawesome';
+import { faEllipsisH } from '@fortawesome/free-solid-svg-icons';
+import style from './style';
+import {
+    faBookmark,
+    faHeart,
+    faMessage,
+} from '@fortawesome/free-regular-svg-icons';
 const Post = props => {
     return (
-        <View style={style.container}>
-            <View style={style.header}>
-            <View style={style.profileInfo}>
-                <UserStory
-                    firstName={props.firstName}
-                    profileImage={props.profileImage}
-                    dimensions={45}
-                />
-            <View>
-                <Text style={style.profileName}>{props.fullname}</Text>
-                <Text>{props.location}</Text>
-            </View>
-            </View>
-                <FontAwesomeIcon icon={faEllipsis} color={"#898DAF"} size={28}/>
-            </View>
-            <Image
-                source={props.postImage}
-                style={style.image}
-                resizeMode="cover"
-            />
-            <View style={style.actions_header}>
-                <View style={style.actions}>
-                    <TouchableOpacity>
-                    <FontAwesomeIcon icon={faHeart} size={20}/>
-                    </TouchableOpacity>
-                    <Text>{props.likes}</Text>
+        <View style={style.userPostContainer}>
+            <View style={style.user}>
+                <View style={style.userContainer}>
+                    <UserProfileImage
+                        profileImage={props.profileImage}
+                        imageDimensions={48}
+                    />
+                    <View style={style.userTextContainer}>
+                        <Text style={style.username}>
+                            {props.firstName} {props.lastName}
+                        </Text>
+                        {props.location && (
+                            <Text style={style.location}> {props.location}</Text>
+                        )}
+                    </View>
                 </View>
-                <View style={style.actions}>
-                    <TouchableOpacity>
-                    <FontAwesomeIcon icon={faComment} size={20}/>
-                    </TouchableOpacity>
-                    <Text>{props.comments}</Text>
-                </View>
-                <View style={style.actions}>
-                    <TouchableOpacity>
-                    <FontAwesomeIcon icon={faBookmark} size={20}/>
-                    </TouchableOpacity>
-                    <Text>{props.saves}</Text>
-                </View>
-
-
+                <FontAwesomeIcon icon={faEllipsisH} size={24} color={'#79869F'} />
             </View>
-
-
-
+            <View style={style.postImage}>
+                <Image source={props.image} />
+            </View>
+            <View style={style.userPostStats}>
+                <View style={style.userPostStatButton}>
+                    <FontAwesomeIcon icon={faHeart} color={'#79869F'} />
+                    <Text style={style.userPostStatText}>{props.likes}</Text>
+                </View>
+                <View style={style.userPostStatButtonRight}>
+                    <FontAwesomeIcon icon={faMessage} color={'#79869F'} />
+                    <Text style={style.userPostStatText}>{props.comments}</Text>
+                </View>
+                <View style={style.userPostStatButtonRight}>
+                    <FontAwesomeIcon icon={faBookmark} color={'#79869F'} />
+                    <Text style={style.userPostStatText}>{props.bookmarks}</Text>
+                </View>
+            </View>
         </View>
     );
-  };
+};
 
-
-  Post.defaultProps = {
-    likes:1201,
-    comments:24,
-    saves:65
-}
-
-
-  export default Post;
+UserPost.propTypes = {
+    firstName: PropTypes.string.isRequired,
+    lastName: PropTypes.string.isRequired,
+    location: PropTypes.string,
+    image: PropTypes.any.isRequired,
+    profileImage: PropTypes.any.isRequired,
+    likes: PropTypes.number.isRequired,
+    comments: PropTypes.number.isRequired,
+    bookmarks: PropTypes.number.isRequired,
+};
+export default UserPost;

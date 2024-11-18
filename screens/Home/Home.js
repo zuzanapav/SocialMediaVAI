@@ -5,10 +5,12 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import style from './style';
 import UserStory from "../../components/UserStory/UserStory";
-import UserPost from '../../components/Post/Post';
+import UserPost from '../../components/UserPost/UserPost';
 import globalStyle from '../../assets/styles/globalStyle';
 import { Routes } from '../../navigation/Routes';
 import Profile from '../Profile/Profile';
+
+
 
 const Home = ({ navigation }) => {
     const userStories = [
@@ -126,6 +128,7 @@ const Home = ({ navigation }) => {
     const [userPostsCurrentPage, setUserPostsCurrentPage] = useState(1);
     const [userPostsRenderedData, setUserPostsRenderedData] = useState([]);
     const [isLoadingUserPosts, setIsLoadingUserPosts] = useState(false);
+
 
     const pagination = (database, currentPage, pageSize) => {
         const startIndex = (currentPage - 1) * pageSize;
