@@ -51,7 +51,7 @@ const Post = props => {
     );
 };
 
-UserPost.propTypes = {
+Post.propTypes = {
     firstName: PropTypes.string.isRequired,
     lastName: PropTypes.string.isRequired,
     location: PropTypes.string,
@@ -61,4 +61,4 @@ UserPost.propTypes = {
     comments: PropTypes.number.isRequired,
     bookmarks: PropTypes.number.isRequired,
 };
-export default UserPost;
+export default Post;

@@ -5,7 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-native-fontawesome";
 import { faEnvelope } from "@fortawesome/free-regular-svg-icons";
 import style from './style';
 import UserStory from "../../components/UserStory/UserStory";
-import UserPost from '../../components/UserPost/UserPost';
+import Post from '../../components/Post/Post';
 import globalStyle from '../../assets/styles/globalStyle';
 import { Routes } from '../../navigation/Routes';
 import Profile from '../Profile/Profile';
@@ -227,7 +227,7 @@ const Home = ({ navigation }) => {
                     showsVerticalScrollIndicator={false}
                     renderItem={({ item }) => (
                         <View style={style.userPostContainer}>
-                            <UserPost
+                            <Post
                                 firstName={item.firstName}
                                 lastName={item.lastName}
                                 image={item.image}
